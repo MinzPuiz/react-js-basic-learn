@@ -11,11 +11,22 @@ class MyComponent extends React.Component {
         ]
     }
 
+    addNewJob = (job) => {
+        const updatedJobs = [...this.state.JobsTitle]
+        updatedJobs.push(job)
+        this.setState({
+            JobsTitle: updatedJobs
+        })
+
+    }
+
     render() {
         return (
             <>
                 <div>
-                    <AddComponent/>
+                    <AddComponent
+                        addNewJob = {this.addNewJob}
+                    />
                 </div>
                 <div>
                     <ChildComponent JobsTitle={this.state.JobsTitle} />

@@ -2,12 +2,12 @@ import React from "react";
 
 class AddComponent extends React.Component {
     state = {
-        titleJob: '',
+        title: '',
         Salary: ''
     }
     handleChangeTitleJob = (event) => {
         this.setState({
-            titleJob: event.target.value
+            title: event.target.value
         })
     }
 
@@ -19,8 +19,22 @@ class AddComponent extends React.Component {
 
     submitButton = (event) => {
         event.preventDefault();
+        if(this.state.title === '' || this.state.Salary === ''){
+            alert('vui lòng nhập đầy đủ thông tin !');
+            return;
+        }
         console.log(">>> Check data input: ", this.state)
-        alert('Vậy tên của bạn là: ' + this.state.titleJob + ' ' + this.state.Salary)
+        alert('đã thêm thành công: ' + this.state.title + ' ' + this.state.salary)
+        this.props.addNewJob({
+            id: Math.random(),
+            title: this.state.title,
+            salary: this.state.Salary
+        })
+
+        this.setState({
+            title: '',
+            salary: ''
+        })
     }
     render(){
         return(
@@ -28,7 +42,7 @@ class AddComponent extends React.Component {
                 <form action="" method="">
                     <div className="form-group">
                         <label htmlFor="fname">Job's title: </label>
-                        <input type="text" onChange={this.handleChangeTitleJob} className="form-control" value={this.state.titleJob} placeholder=""/>
+                        <input type="text" onChange={this.handleChangeTitleJob} className="form-control" value={this.state.title} placeholder=""/>
                     </div>
                     <div className="form-group">
                         <label htmlFor="lname">Salary: </label>
