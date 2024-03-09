@@ -12,6 +12,12 @@ class ChildComponent extends React.Component {
         })
     }
 
+    handleGetJob = (job) => {
+        //console.log('>>> handle on delete job', job)
+        this.props.deleteJob(job)
+        alert(`Đã xóa công việc: ${job.title}`)
+    }
+
     render() {
         //console.log(">>> checking properties", this.props)
 
@@ -32,7 +38,7 @@ class ChildComponent extends React.Component {
                                 JobsTitle.map((item, index) => {
                                     return(
                                         <div key={item.id}>
-                                            {item.title} - {item.salary}
+                                            <span>{item.title} - {item.salary} <button onClick={() => this.handleGetJob(item)} type="button">X</button></span>
                                         </div>
                                     )
                                 })

@@ -20,6 +20,13 @@ class MyComponent extends React.Component {
 
     }
 
+    deleteJob = (job) => {
+        let currentJob = this.state.JobsTitle.filter(item => item.id !== job.id)
+        this.setState({
+            JobsTitle: currentJob
+        })
+    }
+
     render() {
         return (
             <>
@@ -29,7 +36,9 @@ class MyComponent extends React.Component {
                     />
                 </div>
                 <div>
-                    <ChildComponent JobsTitle={this.state.JobsTitle} />
+                    <ChildComponent JobsTitle={this.state.JobsTitle} 
+                    deleteJob={this.deleteJob}
+                    />
                 </div>
             </>
         )
